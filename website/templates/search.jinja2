@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{%block title%} Search page {%endblock%}
+
+{% block content %}
+    <h3 align="center"> Search for prices</h3>
+    <br/><br/>
+
+    <div class="container-fluid">
+        <form method= "POST">
+        {{ form.hidden_tag() }}
+        {{ form.name.label ()}}
+        {{ form.name(class="form-control") }}
+        </br>
+        {{ form.submit(class="btn btn-dark mb-3") }}
+        </br>
+        </form>
+    </div>
+    {% for coin in coin_data%}
+        <div class="card mb-4" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+               <img src="https://assets.coingecko.com/coins/images/1/thumb/{{ coin.name }}.png?1547033579" class="card-img-top" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ coin.name }}</h5>
+                <p class="card-text">coin rank: {{ coin.rank}}</p>
+                <p class="card-text">coin symbol: {{ coin.symbol}}</p>
+                <p class="card-text">coin price in usd: {{ coin.current_price}}</p>
+                <p class="card-text">coin price(binance): {{ coin.binance}}</p>
+                <p class="card-text">coin price(bibox): {{ coin.bibox}}</p>
+                <p class="card-text">coin price(digfinex): {{ coin.digifinex}}</p>
+                <p class="card-text">coin price(xt.com): {{ coin.xt}}</p>
+                <p class="card-text">coin price(whitebit): {{ coin.whitebit}}</p>
+                <p class="card-text">coin price(ftx): {{ coin.ftx}}</p>
+                <p class="card-text">coin price(currency): {{ coin.currency}}</p>
+                <p class="card-text">coin price(bitfinex): {{ coin.bitfinex}}</p>
+                <a href="{{url_for('views.delete', id=crypto.id)}}" class="card-link">Delete Coin</a>
+              </div>
+            </div>
+           </div>
+          </div>
+    {% endfor %}
+
+{% endblock %}
